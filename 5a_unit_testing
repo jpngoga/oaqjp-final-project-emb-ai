@@ -8,6 +8,6 @@ test_required_keys (test_emotion_detection.TestEmotionDetector) ... ok
 test_sadness (test_emotion_detection.TestEmotionDetector) ... ok
 
 ----------------------------------------------------------------------
-Ran 6 tests in 0.004s
+Ran 6 tests in 0.003s
 
 OK
