@@ -9,4 +9,4 @@ HEADERS = {
 def emotion_detector(text_to_analyse):
     payload = {"raw_document": {"text": text_to_analyse}}
     response = requests.post(url=URL, headers=HEADERS, json=payload)
-    return response.text
+
