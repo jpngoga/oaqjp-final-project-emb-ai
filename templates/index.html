@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotion Detector</title>
+</head>
+<body>
+    <h1>Emotion Detector</h1>
+
+    <label for="textToAnalyze">Enter a sentence:</label>
+    <textarea id="textToAnalyze" rows="5" cols="50"></textarea>
+
+    <br><br>
+    <button onclick="analyzeEmotion()">Analyze Emotion</button>
+
+    <p id="result" role="status"></p>
+
+    <script>
+        async function analyzeEmotion() {
+            const text = document.getElementById("textToAnalyze").value;
+            const result = document.getElementById("result");
+
+            if (!text.trim()) {
+                result.textContent = "Invalid text! Please try again!";
+                return;
+            }
+
+            result.textContent = "Analyzing...";
+
+            try {
+                const response = await fetch(
+                    "/emotionDetector?textToAnalyze=" +
+                    encodeURIComponent(text)
+                );
+
+                const message = await response.text();
+                result.textContent = message;
+            } catch (error) {
+                result.textContent = "Unable to contact the server.";
+            }
+        }
+    </script>
+</body>
+</html>
+
