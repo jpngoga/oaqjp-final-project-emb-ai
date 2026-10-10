@@ -1,79 +1,13 @@
-import unittest
-from unittest.mock import Mock, patch
+/Users/apple/EmotionDetection/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+test_anger (test_emotion_detection.TestEmotionDetector) ... ok
+test_disgust (test_emotion_detection.TestEmotionDetector) ... ok
+test_fear (test_emotion_detection.TestEmotionDetector) ... ok
+test_joy (test_emotion_detection.TestEmotionDetector) ... ok
+test_required_keys (test_emotion_detection.TestEmotionDetector) ... ok
+test_sadness (test_emotion_detection.TestEmotionDetector) ... ok
 
-from EmotionDetection import emotion_detector
+----------------------------------------------------------------------
+Ran 6 tests in 0.004s
 
-
-class TestEmotionDetector(unittest.TestCase):
-
-    @patch("EmotionDetection.emotion_detection.requests.post")
-    def test_joy(self, mock_post):
-        mock_response = Mock()
-        mock_response.status_code = 200
-        mock_response.json.return_value = {
-            "emotionPredictions": [{
-                "emotion": {
-                    "anger": 0.01,
-                    "disgust": 0.01,
-                    "fear": 0.02,
-                    "joy": 0.95,
-                    "sadness": 0.01,
-                }
-            }]
-        }
-        mock_post.return_value = mock_response
-
-        result = emotion_detector("I am happy")
-
-        self.assertEqual(result["dominant_emotion"], "joy")
-        self.assertEqual(result["joy"], 0.95)
-
-    @patch("EmotionDetection.emotion_detection.requests.post")
-    def test_sadness(self, mock_post):
-        mock_response = Mock()
-        mock_response.status_code = 200
-        mock_response.json.return_value = {
-            "emotionPredictions": [{
-                "emotion": {
-                    "anger": 0.01,
-                    "disgust": 0.02,
-                    "fear": 0.03,
-                    "joy": 0.04,
-                    "sadness": 0.90,
-                }
-            }]
-        }
-        mock_post.return_value = mock_response
-
-        result = emotion_detector("I am sad")
-
-        self.assertEqual(result["dominant_emotion"], "sadness")
-
-    @patch("EmotionDetection.emotion_detection.requests.post")
-    def test_required_keys(self, mock_post):
-        mock_response = Mock()
-        mock_response.status_code = 200
-        mock_response.json.return_value = {
-            "emotionPredictions": [{
-                "emotion": {
-                    "anger": 0.1,
-                    "disgust": 0.1,
-                    "fear": 0.1,
-                    "joy": 0.6,
-                    "sadness": 0.1,
-                }
-            }]
-        }
-        mock_post.return_value = mock_response
-
-        result = emotion_detector("A sample sentence")
-
-        expected = {
-            "anger", "disgust", "fear",
-            "joy", "sadness", "dominant_emotion"
-        }
-        self.assertEqual(set(result.keys()), expected)
-
-
-if __name__ == "__main__":
-    unittest.main()
+OK
