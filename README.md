@@ -1,4 +1,14 @@
 # EmotionDetection
+
+
+An AI-based web application that uses Watson NLP to detect emotions in text.
+
+## Features
+- Detects anger, disgust, fear, joy, and sadness.
+- Identifies the dominant emotion.
+- Provides a Flask web interface.
+- Includes unit tests and error handling.
+
 Final Project - Overview and Review Criteria
 
 Estimated time needed: 5 minutes
