@@ -1,4 +1,3 @@
-
 """Emotion detection using the Watson NLP service."""
 
 import requests
@@ -49,9 +48,7 @@ def emotion_detector(text_to_analyze):
             "joy": emotions["joy"],
             "sadness": emotions["sadness"],
         }
-        result["dominant_emotion"] = max(
-            emotions, key=emotions.get
-        )
+        result["dominant_emotion"] = max(result, key=result.get)
 
         return result
 
@@ -63,4 +60,3 @@ def emotion_detector(text_to_analyze):
         TypeError,
     ):
         return empty_result.copy()
-
